@@ -17,6 +17,7 @@
     "rules": {
 	    "quotes": "warn",
       "eol-last": "off",
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+      "require-jsdoc": "off"
     }
 }
