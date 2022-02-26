@@ -1,1 +1,2 @@
-console.log('hola mundo');
+"use strict";
+console.log('EJERCICIO 1) AÑOS BISIESTOS');
