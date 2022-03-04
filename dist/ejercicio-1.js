@@ -6,10 +6,10 @@ console.log('EJERCICIO 1) AÑOS BISIESTOS');
  * @return {boolean} If the year is leap or not.
  */
 function isLeapYear(Year) {
-  if ((Year % 4 == 0) && ((Year % 100 != 0) || (Year % 400 == 0))) {
-    return true;
-  }
-  return false;
+    if ((Year % 4 == 0) && ((Year % 100 != 0) || (Year % 400 == 0))) {
+        return true;
+    }
+    return false;
 }
 console.log('Pruebas:');
 console.log('1997: ', isLeapYear(1997));

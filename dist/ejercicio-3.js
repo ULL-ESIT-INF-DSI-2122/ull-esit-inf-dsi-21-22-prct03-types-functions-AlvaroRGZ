@@ -20,16 +20,13 @@ function fromSnakeToCamelCase(cad) {
 function fromCamelToSnakeCase(cad) {
     let result = cad;
     for (let i = 0; i < result.length; i++) {
-        if (result[i] == result[i].toUpperCase() /* && (result[i] != '_')*/) {
-            // result = cad.substring(0, i - 1) + '_' +
-            //         cad[i].toLowerCase() + cad.substring(i + 1);
+        if (result[i] == result[i].toUpperCase()) {
             result = result.replace(result[i], ('_' + result[i].toLowerCase()));
-            console.log('Cadena i:', i, '  ', result);
-            i++;
+            i++; // Avanzamos uno mas debido a añadir '_'
         }
     }
     return result;
 }
 console.log('Pruebas:');
-console.log('alv_rod_gOm: ', fromSnakeToCamelCase('alv_rod_gOm'));
+console.log('alv_rod_gOm: ', fromSnakeToCamelCase('alv_rod_gom'));
 console.log('alvRodGom: ', fromCamelToSnakeCase('alvRodGom'));
