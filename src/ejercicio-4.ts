@@ -1,4 +1,4 @@
-console.log('EJERCICIO 3) Conversor de estilo');
+console.log('EJERCICIO 4) Conversor ISBN');
 
 function isValidISBN(code: string): boolean {
   const cad: string = code.replace(/-/g, '');

@@ -1,5 +1,5 @@
 "use strict";
-console.log('EJERCICIO 3) Conversor de estilo');
+console.log('EJERCICIO 4) Conversor ISBN');
 function isValidISBN(code) {
     const cad = code.replace(/-/g, '');
     console.log('replace:', cad);
@@ -24,4 +24,4 @@ function isValidISBN(code) {
 }
 console.log('Pruebas:');
 console.log('3-598-21507-X : ', isValidISBN('3-598-21507-X'));
-console.log('359821507X : ', isValidISBN('352821507X'));
+console.log('359821507X : ', isValidISBN('359821507X'));
