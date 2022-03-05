@@ -13,15 +13,4 @@ los apartados vistos en clase:
 
 ### Estructura de nuestro proyecto
 
-```
-[~/p3(main)]$node dist/ejercicio-10.js 
-EJERCICIO 10) Distancia de Manhattan
-Pruebas:
-[1, 3], [4, 10]:  10
-[1, 1], [1, 1]:  0
-[-1, 3, 7], [-5, 8, 7]:  9
-Coordenadas con dimensiones diferentes. Error
-[-1, 3], [-5, 8, 7]:  -1
-```
-
 
