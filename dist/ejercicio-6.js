@@ -8,7 +8,8 @@ function ipsInRange(ip1, ip2) {
     const r2 = parseInt(bytes2[1]) - parseInt(bytes1[1]);
     const r3 = parseInt(bytes2[2]) - parseInt(bytes1[2]);
     const r4 = parseInt(bytes2[3]) - parseInt(bytes1[3]);
-    if ((r1 < 0) || (r2 < 0) || (r3 < 0) || (r4 < 0)) {
+    // (r1 < 0) || (r2 < 0) ||(r3 < 0) ||(r4 < 0) 
+    if (r1) {
         return -1;
     }
     else {
