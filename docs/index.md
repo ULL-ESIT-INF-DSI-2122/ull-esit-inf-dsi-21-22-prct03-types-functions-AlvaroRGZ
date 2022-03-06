@@ -288,7 +288,7 @@ function dañoEfectivo(tAtack: pokemonType, tDefend: pokemonType,
 
 Podemos desgranar la función para explicarla de manera más amena:
 
-1. ***Definición de tipo**.
+1. **Definición de tipo**.
 
 > type pokemonType = 'agua' | 'hierba' | 'fuego' | 'electrico'
 
