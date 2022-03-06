@@ -88,6 +88,88 @@ console.log('alvRodGom: ', fromCamelToSnakeCase('alvRodGom'));
 alvRodGom:  alv_rod_gom
 ```
 
+### Ejercicio 4 - Conversor ISBN
+
+Siguiendo las pautas y las fórmulas de la práctica:
+
+> (x1 * 10 + x2 * 9 + x3 * 8 + x4 * 7 + x5 * 6 + x6 * 5 + x7 * 4 + x8 * 3 + x9 * 2 + x10 * 1) mod 11 == 0
+
+La función elimina los guiones '-' de la cadena de entrada y comprueba que tenga una longitud de 10.
+A continuación, recorre los primeros 9 digitos convirtiendolos a enteros para luego multiplicarlos según 
+la formula anterior y guardar la suma de estos valores para en el siguiente paso calcular el valor del
+ultimo simbolo. Calculado este, se suma con la cantidad anterior y se obtiene el modulo 11 de ella para
+comprobar si cumple la condicion de ISBN.
+
+```
+function isValidISBN(code: string): boolean {
+  const cad: string = code.replace(/-/g, '');
+  console.log('replace:', cad);
+  if (cad.length != 10) {
+    console.log('Tamaño: ', cad.length);
+    return false;
+  }
+  let checksum: number = 0;
+  for (let i = 0; i < 9; i++) {
+    checksum += (parseInt(cad[i])) * (10 - i);
+  }
+
+  if (cad[9] == 'X') {
+    checksum += 10;
+  } else if (typeof cad[9] == 'number') {
+    checksum += cad[9];
+  } else {
+    return false;
+  }
+
+  return ((checksum % 11) == 0)? true : false;
+}
+```
+```
+console.log('3-598-21507-X : ', isValidISBN('3-598-21507-X'));
+console.log('359821507X : ', isValidISBN('359821507X'));
+
+3-598-21507-X :  true
+359821507X :  true
+```
+
+### Ejercicio 5 - Orden descendente
+
+La solución de este problema recae sobretodo en el uso de un vector y sus metodos. En el primer bucle
+separamos el numero en cada uno de sus digitos utilizando la operacion de resto para obtener el ultimo digito y la división entera para avanzar hacia el siguiente, introduciendolos en orden en el vector.
+
+Luego empleamos el metodo `sort` del vector para ordenarlos y posteriormente recorremos el array 
+multiplicando cada numero con su cifra y sumandolo al resultado para generar el numero con sus digitos
+ordenados.
+
+```
+function descendente(numero: number): number {
+  const numberArray: number[] = [];
+  let result: number= 0;
+  while (numero > 0) {
+    numberArray.push(numero%10);
+    numero = Math.floor(numero/10);
+  }
+  numberArray.sort();
+  
+  for (let i = 0; i < numberArray.length; i++) {
+    result += numberArray[i] * 10**i;
+  }
+  return result;
+}
+```
+```
+console.log('76125321359: ', descendente(76125321359));
+76125321359:  97655332211
+```
+
+
+
+
+
+
+
+
+
 
 
 
