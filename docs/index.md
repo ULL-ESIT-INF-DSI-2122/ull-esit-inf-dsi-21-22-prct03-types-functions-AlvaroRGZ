@@ -288,13 +288,13 @@ function dañoEfectivo(tAtack: pokemonType, tDefend: pokemonType,
 
 Podemos desgranar la función para explicarla de manera más amena:
 
-1. **Definición de tipo**.
+1. Definición de tipo.
 
 > type pokemonType = 'agua' | 'hierba' | 'fuego' | 'electrico'
 
 Esta definición de tipo hará mucho más legible el código.
 
-2. **Representación de debilidades**.
+2. Representación de debilidades.
 
 He optado por el uso de vectores que representarán el conjunto de los tipos débiles o fuertes a
 un tipo en concreto. De esta manera, en el futuro si se añadieran más tipos y sus relaciones,
@@ -315,7 +315,7 @@ para cada uno igual que los demás.
   const debilContraHierba: pokemonType[] = ['agua'];
 ```
 
-3. **Calculo de la efectividad**.
+3. Calculo de la efectividad.
 
 El primero representa el caso en el que los tipos del atacantes y el defensor sean iguales, 
 calcula con `no muy efectivo` y retorna para acabar con la función.
@@ -385,10 +385,64 @@ hierba vs electrico | a: 10 d: 30 =  16.666666666666664
 fuego vs fuego      | a: 20 d: 60 =  8.333333333333332
 ```
 
+### Ejercicio 9 - Astérix no entiende a estos romanos
 
+Para la resolución de este problema también hacemos uso de otra función para convertir los caracteres
+en su valor numérico, que implementa un simple `switch` con todos los posibles valores:
 
+```
+function rToD(r: string): number {
+  let d: number = 0;
+  switch (r) {
+    case 'I': d = 1;
+      break;
+    case 'V': d = 5;
+      break;
+    case 'X': d = 10;
+      break;
+    case 'L': d = 50;
+      break;
+    case 'C': d = 100;
+      break;
+    case 'D': d = 500;
+      break;
+    case 'M': d = 1000;
+      break;
+    default:
+      break;
+  }
+  return d;
+}
+```
 
+En la función principal recorremos la cadena de entrada convirtiendo los caracteres a numeros para 
+sumarlos al resultado, pero debemos comprobar si el numero calculado es mayor que el anterior, lo que
+significaria que es un numero que representa la diferencia. En ese caso, restamos el doble de ese valor
+anterior para conpensar la operación.
 
+```
+function romaToDecimal(romano: string): number {
+  let resultado: number = 0;
+  let anterior: number = 0;
+  for (let i = 0; i < romano.length; i++) {
+    const valor: number = rToD(romano[i]);
+    resultado += valor;
+    if (anterior < valor) {
+      resultado -= anterior * 2;
+    }
+    anterior = valor;
+  }
+  return resultado;
+}
+
+```
+```
+console.log('MCMXCV = ', romaToDecimal('MCMXCV'));
+console.log('MMXIV = ', romaToDecimal('MMXIV'));
+
+MCMXCV =  1995
+MMXIV =  2014
+```
 
 
 
