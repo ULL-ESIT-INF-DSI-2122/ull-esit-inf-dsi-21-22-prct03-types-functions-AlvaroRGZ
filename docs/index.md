@@ -288,13 +288,13 @@ function dañoEfectivo(tAtack: pokemonType, tDefend: pokemonType,
 
 Podemos desgranar la función para explicarla de manera más amena:
 
-1. Definición de tipo.
+1.Definición de tipo.
 
 > type pokemonType = 'agua' | 'hierba' | 'fuego' | 'electrico'
 
 Esta definición de tipo hará mucho más legible el código.
 
-2. Representación de debilidades.
+2.Representación de debilidades.
 
 He optado por el uso de vectores que representarán el conjunto de los tipos débiles o fuertes a
 un tipo en concreto. De esta manera, en el futuro si se añadieran más tipos y sus relaciones,
@@ -315,7 +315,7 @@ para cada uno igual que los demás.
   const debilContraHierba: pokemonType[] = ['agua'];
 ```
 
-3. Calculo de la efectividad.
+3.Calculo de la efectividad.
 
 El primero representa el caso en el que los tipos del atacantes y el defensor sean iguales, 
 calcula con `no muy efectivo` y retorna para acabar con la función.
