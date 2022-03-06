@@ -206,7 +206,46 @@ console.log('76125321359: ', descendente(76125321359));
 76125321359:  97655332211
 ```
 
+### Ejercicio 6 - Contando IPs
 
+La función convierte cada ip en un vector de cadenas mediante el metodo `split()` con los `.` separadores
+en los que cada posición contiene un byte de la ip.
+
+Luego simplemente calculamos el numero decimal representado en binario en la IP mediante multiplicarlos
+segun su posición en la dirección y calculamos la diferencia entre los valores que representan cada IP en
+binario, es decir, obtenemos cuantas IPs hay entre ellas.
+
+```
+function ipsInRange(ip1: string, ip2: string): number {
+  let result1: number = 0;
+  let result2: number = 0;
+  const bytes1: string[] = ip1.split('.');
+  const bytes2: string[] = ip2.split('.');
+
+  result1 = parseInt(bytes1[0]) * 2**24 +
+            parseInt(bytes1[1]) * 2**16 +
+            parseInt(bytes1[2]) * 2**8 +
+            parseInt(bytes1[3]);
+  result2 = parseInt(bytes2[0]) * 2**24 +
+            parseInt(bytes2[1]) * 2**16 +
+            parseInt(bytes2[2]) * 2**8 +
+            parseInt(bytes2[3]);
+
+  return result2 - result1;
+}
+```
+```
+console.log('ipsInRange("10.0.0.0", "10.0.0.50") == 50',
+    ipsInRange('10.0.0.0', '10.0.0.50') == 50);
+console.log('ipsInRange("10.0.0.0", “10.0.1.0 ”) == 256',
+    ipsInRange('10.0.0.0', '10.0.1.0 ') == 256);
+console.log('ipsInRange("20.0.0.10", "20.0.1.0") == 246',
+    ipsInRange('20.0.0.10', '20.0.1.0') == 246);
+    
+ipsInRange("10.0.0.0", "10.0.0.50") == 50 true
+ipsInRange("10.0.0.0", “10.0.1.0 ”) == 256 true
+ipsInRange("20.0.0.10", "20.0.1.0") == 246 true 
+```
 
 ### Ejercicio 7 - Wonder Woman
 
