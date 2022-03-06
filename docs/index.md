@@ -448,12 +448,42 @@ MMXIV =  2014
 
 Empleando la fórmula indicada por [Wikipedia](https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista)
 
-> | x 1 − x 2 | 2 + | y 1 − y 2 | 2 {\displaystyle {\sqrt {{|x_{1}-x_{2}|}^{2}+{|y_{1}-y_{2}|}^{2}}}} {\displaystyle {\sqrt {{|x_{1}-x_{2}|}^{2}+{|y_{1}-y_{2}|}^{2}}}}
+![Formula manhattan](./images/2-manhattan.png)
 
-sdasfasfas
+La función es muy sencilla, hay que destacar la elección de representar las coordenadas mediante
+un `vector de enteros` con el tipo definido `coordenada`. Simplemente nos aseguramos de que tengan las
+mismas dimensiones y vamos recorriendo ambos conjuntos para aplicar la formula anterior e ir sumandolo 
+al resultado final.
 
+```
+type coordenada = number[];
 
+function manhattan(c1: coordenada, c2: coordenada): number {
+  let resultado: number = 0;
 
+  if (c1.length != c2.length) {
+    console.log('Coordenadas con dimensiones diferentes. Error');
+    return -1;
+  }
+
+  for (let i = 0; i < c1.length; i++) {
+    resultado += Math.abs(c1[i] - c2[i]);
+  }
+  return resultado;
+}
+```
+```
+console.log('[1, 3], [4, 10]: ', manhattan([1, 3], [4, 10]));
+console.log('[1, 1], [1, 1]: ', manhattan([1, 1], [1, 1]));
+console.log('[-1, 3, 7], [-5, 8, 7]: ', manhattan([-1, 3, 7], [-5, 8, 7]));
+console.log('[-1, 3], [-5, 8, 7]: ', manhattan([-1, 3], [-5, 8, 7]));
+
+[1, 3], [4, 10]:  10
+[1, 1], [1, 1]:  0
+[-1, 3, 7], [-5, 8, 7]:  9
+Coordenadas con dimensiones diferentes. Error
+[-1, 3], [-5, 8, 7]:  -1
+```
 
 
 
