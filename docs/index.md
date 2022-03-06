@@ -164,8 +164,54 @@ console.log('76125321359: ', descendente(76125321359));
 
 
 
+### Ejercicio 7 - Wonder Woman
 
+Según la definicion del problema de Cerberus, en el que la generación de cabezas sigue la secuencia:
 
+En el caso de haber atacado por 4 vez.
+> 2 * 3 * 4 * n 
+
+La función opera empleando el siguiente algoritmo:
+
+La variable `newheads` guardará el número de nuevas cabezas generadas en cada iteración, por eso al
+inicio, en el ataque 1 vale `n`. Con un bucle, según el número de ataques `atack` que se indiquen 
+calcularemos siguiendo los ejemplos de la hoja de practicas:
+
+```
+10 cabezas aparecen después del ataque 1: 5 - 1 + 10 = 14
+20 cabezas aparecen después del ataque 2: 14 - 1 + 2 * 10 = 33
+60 cabezas aparecen después del ataque 3: 33 - 1 + 2 * 3 * 10 = 92
+```
+
+En cada iteración, el número de cabezas `heads` perderá `1` debido al ataque, y el número de nuevas
+cabezas `newheads` estará multiplicado en secuencia según cuantos ataques hayamos realizado ya 
+(`j` recorre desde 1 hasta el nº de ataque actual `i`). `newheads` es sumado a `heads` para obtener 
+el total de cabezas hasta el momento. Y para la siguiente iteración reseteamos `newheads` a `n`.
+
+```
+function wonderWoman(heads: number, n: number, atack: number): number {
+  let newheads: number = n;
+  let j: number = 1;
+  for (let i = 1; i <= atack; i++) {
+    heads--;
+    j=1;
+    while (j <= i) {
+      newheads *= j;
+      j++;
+    }
+    heads += newheads;
+    newheads = n;
+  }
+  return heads;
+}
+```
+```
+console.log('h: 2 n: 1  a: 1 = ', wonderWoman(2, 1, 1));
+console.log('h: 5 n: 10 a: 3 = ', wonderWoman(5, 10, 3));
+
+h: 2 n: 1  a: 1 =  2
+h: 5 n: 10 a: 3 =  92
+```
 
 
 
