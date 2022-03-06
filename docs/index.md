@@ -213,6 +213,183 @@ h: 2 n: 1  a: 1 =  2
 h: 5 n: 10 a: 3 =  92
 ```
 
+### Ejercicio 8 - Entrenador Pokemon
+
+La función `dañoEfectivo` devolverá el daño real causado según la fórmula:
+
+> daño = 50 * (ataque / defensa) * efectividad
+
+La forma de representar las debilidades ha sido la lucha más dificil de este problema.
+La estructura que se muestra en esta solución tiene la ventaja de ser muy escalable.
+
+```
+type pokemonType = 'agua' | 'hierba' | 'fuego' | 'electrico'
+
+function dañoEfectivo(tAtack: pokemonType, tDefend: pokemonType,
+    ataque: number, defensa: number): number {
+  let efectividad: number = 0;
+  const fuerteContraAgua: pokemonType[] = ['hierba', 'electrico'];
+  const debilContraAgua: pokemonType[] = ['fuego'];
+
+  const fuerteContraFuego: pokemonType[] = ['agua'];
+  const debilContraFuego: pokemonType[] = ['hierba'];
+
+  const fuerteContraElectrico: pokemonType[] = [];
+  const debilContraElectrico: pokemonType[] = ['agua'];
+
+  const fuerteContraHierba: pokemonType[] = ['fuego'];
+  const debilContraHierba: pokemonType[] = ['agua'];
+  
+  if (tAtack == tDefend) {
+    return 50 * (ataque / defensa) * 0.5;
+  }
+
+  switch (tAtack) {
+    case 'agua': {
+      if (fuerteContraAgua.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraAgua.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'fuego': {
+      if (fuerteContraFuego.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraFuego.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'electrico': {
+      if (fuerteContraElectrico.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraElectrico.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'hierba': {
+      if (fuerteContraHierba.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraHierba.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+  }   
+  return 50 * (ataque / defensa) * efectividad;
+}
+```
+
+Podemos desgranar la función para explicarla de manera más amena:
+
+1. ***Definición de tipo**.
+
+> type pokemonType = 'agua' | 'hierba' | 'fuego' | 'electrico'
+
+Esta definición de tipo hará mucho más legible el código.
+
+2. **Representación de debilidades**.
+
+He optado por el uso de vectores que representarán el conjunto de los tipos débiles o fuertes a
+un tipo en concreto. De esta manera, en el futuro si se añadieran más tipos y sus relaciones,
+solo deberiamos añadirlos a cada vector y crear como veremos en el siguiente apartado un `case`
+para cada uno igual que los demás.
+
+```
+  const fuerteContraAgua: pokemonType[] = ['hierba', 'electrico'];
+  const debilContraAgua: pokemonType[] = ['fuego'];
+
+  const fuerteContraFuego: pokemonType[] = ['agua'];
+  const debilContraFuego: pokemonType[] = ['hierba'];
+
+  const fuerteContraElectrico: pokemonType[] = [];
+  const debilContraElectrico: pokemonType[] = ['agua'];
+
+  const fuerteContraHierba: pokemonType[] = ['fuego'];
+  const debilContraHierba: pokemonType[] = ['agua'];
+```
+
+3. **Calculo de la efectividad**.
+
+El primero representa el caso en el que los tipos del atacantes y el defensor sean iguales, 
+calcula con `no muy efectivo` y retorna para acabar con la función.
+
+En el caso contrario, entra en un `switch` dónde según el tipo del atacante, verá dónde se 
+encuentra el tipo del adversario, si en el vector de los débiles o de los fuertes contra él, 
+o el resto, aplicando su correspondiente efectividad. 
+
+Con la efectividad obtenida, hacemos el calculo y devolvemos el resultado.
+
+```
+  if (tAtack == tDefend) {
+    return 50 * (ataque / defensa) * 0.5;
+  }
+
+  switch (tAtack) {
+    case 'agua': {
+      if (fuerteContraAgua.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraAgua.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'fuego': {
+      if (fuerteContraFuego.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraFuego.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'electrico': {
+      if (fuerteContraElectrico.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraElectrico.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+    case 'hierba': {
+      if (fuerteContraHierba.includes(tDefend)) {
+        efectividad = 0.5;
+      } else if (debilContraHierba.includes(tDefend)) {
+        efectividad = 2;
+      } else {
+        efectividad = 1;
+      } 
+    }
+  }
+  
+  return 50 * (ataque / defensa) * efectividad;
+```
+```
+console.log('agua vs fuego | a: 20 d: 40 = ',
+    dañoEfectivo('agua', 'fuego', 20, 40));
+console.log('hierba vs electrico | a: 10 d: 30 = ',
+    dañoEfectivo('hierba', 'electrico', 10, 30));
+console.log('fuego vs fuego | a: 20 d: 60 = ',
+    dañoEfectivo('fuego', 'fuego', 20, 60));
+
+agua vs fuego       | a: 20 d: 40 =  12.5
+hierba vs electrico | a: 10 d: 30 =  16.666666666666664
+fuego vs fuego      | a: 20 d: 60 =  8.333333333333332
+```
+
+
+
+
+
+
 
 
 
