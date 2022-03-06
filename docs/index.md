@@ -444,9 +444,13 @@ MCMXCV =  1995
 MMXIV =  2014
 ```
 
+### Ejercicio 10 - Distancia de Manhattan
 
+Empleando la fórmula indicada por [Wikipedia](https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista)
 
+> | x 1 − x 2 | 2 + | y 1 − y 2 | 2 {\displaystyle {\sqrt {{|x_{1}-x_{2}|}^{2}+{|y_{1}-y_{2}|}^{2}}}} {\displaystyle {\sqrt {{|x_{1}-x_{2}|}^{2}+{|y_{1}-y_{2}|}^{2}}}}
 
+sdasfasfas
 
 
 
