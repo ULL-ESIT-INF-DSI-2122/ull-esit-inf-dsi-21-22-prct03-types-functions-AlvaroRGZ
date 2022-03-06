@@ -40,7 +40,7 @@ function isLeapYear(Year: number): boolean {
 ### Ejercicio 3 - Conversor de estilo
 
 Para el primer caso `fromSnakeToCamelCase`, empleamos el método `split` de `string` para separar
-en un vector de palabras la cadena de entrada separados por `'-'`. Luego recorremos el vector y salvo
+en un vector de palabras la cadena de entrada separados por `'_'`. Luego recorremos el vector y salvo
 la primera palabra que va en minúscula, vamos poniendo en mayuscula la primera letra de la palabra y el
 resto minuscula para ir añadiendola al final de una string resultado.
 
@@ -63,8 +63,29 @@ function fromSnakeToCamelCase(cad: string): string {
 }
 ```
 ``` 
-console.log('alv_rod_gOm: ', fromSnakeToCamelCase('alv_rod_gom'))
+console.log('alv_rod_gOm: ', fromSnakeToCamelCase('alv_rod_gOm'))
 alv_rod_gOm:  alvRodGom
+```
+
+Para el caso contrario `fromCamelToSnakeCase`, recorremos la cadena caracter a caracter comprobando si 
+este está en mayúscula. En ese caso, reemplazamos el caracter por el mismo en minuscula precedido por 
+una `'_'` y con la sentencia `i++` saltamos al siguiente debvido a que hemos incorporado un nuevo caracter.
+
+```
+function fromCamelToSnakeCase(cad: string): string {
+  let result: string = cad;
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] == result[i].toUpperCase()) {
+      result = result.replace(result[i], ('_' + result[i].toLowerCase()));
+      i++; // Avanzamos uno mas debido a añadir '_'
+    }
+  }
+  return result;
+}
+```
+```
+console.log('alvRodGom: ', fromCamelToSnakeCase('alvRodGom'));
+alvRodGom:  alv_rod_gom
 ```
 
 
