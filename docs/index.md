@@ -17,6 +17,7 @@ La estructura de directorios que hemos utilizado en esta práctica ha sido:
 
 ![Imagen directorio](./images/1-estructura.png)
 
+## Ejercicios propuestos
 ### Ejercicio 1 - Años bisiestos
 
 La función devuelve un booleano indicando si el año pasado por parámetro. 
