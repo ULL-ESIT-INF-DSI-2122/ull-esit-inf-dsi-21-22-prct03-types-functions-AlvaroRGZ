@@ -13,4 +13,9 @@ los apartados vistos en clase:
 
 ### Estructura de nuestro proyecto
 
+La estructura de directorios que hemos utilizado en esta práctica ha sido:
+
+![Imagen directorio](./images/1-estructura.png)
+
+### Ejercicio 1 - Años bisiestos
 
