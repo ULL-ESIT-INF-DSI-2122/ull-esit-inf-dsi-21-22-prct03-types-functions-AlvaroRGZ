@@ -34,8 +34,52 @@ function isLeapYear(Year: number): boolean {
 
 ### Ejercicio 2 - Notación decimal y factorial
 
+Función desarrollada mediante apuntes sobre esta [página web](https://ao.ms/decimal-to-factorial-and-back-in-java/).
+Para la resolución de este problema hemos utilizado una cadena para convertir los numeros en caracteres.
 
+> const leyenda: string = '0123456789';
 
+Para pasar de decimal a factorial solamente debemos ir sacando los factoriales del numero dividiendolo 
+iterativamente y añadiendolos a la cadena resultado. Esa cadena la convertimos en un vector para 
+aprovechar el método `reverse` para darle la vuelta y volvemos a convertirlo en una cadena eliminando
+las `,` residuales del metodo `toString()`.
+``` 
+function decimalToFactorial(numero: number): string {
+  let sb: string = '0';
+  for (let i: number = 2; numero > 0;) {
+    sb += (leyenda.charAt((numero % i)));
+    numero = Math.floor(numero /= i++);
+  }
+  const v: string[] = sb.split('');
+  return v.reverse().toString().replace(/,/g, '');
+}
+```
+
+En el segundo caso, recorremos la cadena desde ambos extremos a la vez (evitando el primer elemento) para
+ir multiplicando con su posicion y su valor numerico y hallar el numero real añadiendo el resultado a un
+acumulador que al final del proceso tendrá el valor del numero real en decimal.
+
+```
+function factorialToDecimal(cad: string): number {
+  let acumulador: number = 0;
+  let multiplo: number = 1;
+  const j: number = 0;
+  for (let i: number = 0, j = cad.length - 1; j >= 0; i++, j--) {
+    if (i > 1) {
+      multiplo *= i;
+    }
+    acumulador += multiplo * leyenda.indexOf(cad.charAt(j));
+  }
+  return acumulador;
+}
+```
+```
+console.log('463: ', decimalToFactorial(463), ' vs 341010');
+console.log('341010: ', factorialToDecimal('341010'), ' vs 463');
+
+463:  341010  vs 341010
+341010:  463  vs 463
+```
 
 ### Ejercicio 3 - Conversor de estilo
 
@@ -484,9 +528,3 @@ console.log('[-1, 3], [-5, 8, 7]: ', manhattan([-1, 3], [-5, 8, 7]));
 Coordenadas con dimensiones diferentes. Error
 [-1, 3], [-5, 8, 7]:  -1
 ```
-
-
-
-
-
-
