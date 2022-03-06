@@ -1,22 +1,21 @@
 console.log('EJERCICIO 6) Contando IPs');
 
 function ipsInRange(ip1: string, ip2: string): number {
-  let result: number = 0;
+  let result1: number = 0;
+  let result2: number = 0;
   const bytes1: string[] = ip1.split('.');
   const bytes2: string[] = ip2.split('.');
 
-  const r1: number = parseInt(bytes2[0]) - parseInt(bytes1[0]);
-  const r2: number = parseInt(bytes2[1]) - parseInt(bytes1[1]);
-  const r3: number = parseInt(bytes2[2]) - parseInt(bytes1[2]);
-  const r4: number = parseInt(bytes2[3]) - parseInt(bytes1[3]);
-  // (r1 < 0) || (r2 < 0) ||(r3 < 0) ||(r4 < 0) 
-  if (r1) {
-    return -1;
-  } else {
-    result = r1 * 2**24 + r2 * 2**16 + r3 * 2**8 + r4;
-  }
-  console.log(result);
-  return result;
+  result1 = parseInt(bytes1[0]) * 2**24 +
+            parseInt(bytes1[1]) * 2**16 +
+            parseInt(bytes1[2]) * 2**8 +
+            parseInt(bytes1[3]);
+  result2 = parseInt(bytes2[0]) * 2**24 +
+            parseInt(bytes2[1]) * 2**16 +
+            parseInt(bytes2[2]) * 2**8 +
+            parseInt(bytes2[3]);
+
+  return result2 - result1;
 }
 
 console.log('Pruebas:');
