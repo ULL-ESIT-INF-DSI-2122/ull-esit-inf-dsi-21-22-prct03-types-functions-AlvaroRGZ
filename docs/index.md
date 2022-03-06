@@ -31,3 +31,48 @@ function isLeapYear(Year: number): boolean {
   return false;
 }
 ```
+
+### Ejercicio 2 - Notación decimal y factorial
+
+
+
+
+### Ejercicio 3 - Conversor de estilo
+
+Para el primer caso `fromSnakeToCamelCase`, empleamos el método `split` de `string` para separar
+en un vector de palabras la cadena de entrada separados por `'-'`. Luego recorremos el vector y salvo
+la primera palabra que va en minúscula, vamos poniendo en mayuscula la primera letra de la palabra y el
+resto minuscula para ir añadiendola al final de una string resultado.
+
+```
+function fromSnakeToCamelCase(cad: string): string {
+  // Get all cad's words in wordArray separated by '_'
+  const wordArray: Array<string> = cad.split('_');
+  let result: string = '';
+  let firstChar: string = '';
+  for (let i = 0; i < wordArray.length; i++) {
+    if (i == 0) {
+      firstChar= wordArray[i][0].toLowerCase();
+    } else {
+      firstChar = wordArray[i][0].toUpperCase();
+    }
+    const restWord: string = wordArray[i].substring(1).toLowerCase();
+    result += firstChar + restWord; 
+  }
+  return result;
+}
+```
+``` 
+console.log('alv_rod_gOm: ', fromSnakeToCamelCase('alv_rod_gom'))
+alv_rod_gOm:  alvRodGom
+```
+
+
+
+
+
+
+
+
+
+
